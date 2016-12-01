@@ -105,6 +105,6 @@ func (hc *HttpClient) Post(dps []DataPoint) error {
 		}
 
 		fmt.Fprintf(os.Stderr, "Failed to post data to OpenTSDB: %s", details)
-		return fmt.Errorf("Failed to post data to OpenTSDB: %v. For more information check stderr file.", msg)
+		return fmt.Errorf("Failed to post data to OpenTSDB: %v. For more information check stderr file. %v", msg, details)
 	}
 }

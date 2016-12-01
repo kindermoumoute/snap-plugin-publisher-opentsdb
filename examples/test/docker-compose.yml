@@ -1,0 +1,19 @@
+version: '2'
+services:
+  main:
+    container_name: runner
+    image: intelsdi/snap:alpine_test
+    environment:
+      - SNAP_VERSION=latest
+      - SNAP_URL=http://127.0.0.1:8181
+    volumes:
+      - ${PLUGIN_SRC}:/snap-plugin-publisher-opentsdb
+    links:
+      - opentsdb
+  opentsdb:
+    container_name: opentsdb
+    image: opower/opentsdb
+    ports:
+      - "4242:4242"
+    expose:
+      - "4242"

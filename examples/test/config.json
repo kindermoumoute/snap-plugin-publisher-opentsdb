@@ -1,0 +1,54 @@
+{
+  "version":1,
+  "schedule":{
+    "type":"simple",
+    "interval":"2s"
+  },
+  "max-failures":-1,
+  "workflow":{
+    "collect":{
+      "metrics":{
+        "/intel/psutil/load/load1": {},
+        "/intel/psutil/load/load5": {},
+        "/intel/psutil/load/load15": {},
+        "/intel/psutil/cpu/cpu-total/user": {},
+        "/intel/psutil/cpu/cpu-total/iowait": {},
+        "/intel/psutil/cpu/cpu-total/system": {},
+        "/intel/psutil/net/*/bytes_sent": {},
+        "/intel/psutil/net/*/packets_sent": {},
+        "/intel/psutil/net/*/bytes_recv": {},
+        "/intel/psutil/net/*/packets_recv": {},
+        "/intel/psutil/net/*/errin": {},
+        "/intel/psutil/net/*/errout": {},
+        "/intel/psutil/vm/available": {},
+        "/intel/psutil/vm/free": {},
+        "/intel/psutil/vm/used": {},
+        "/intel/psutil/vm/used_percent": {},
+        "/intel/psutil/vm/total": {},
+        "/intel/procfs/meminfo/mem_used_perc": {},
+        "/intel/procfs/meminfo/swap_cached_perc": {},
+        "/intel/procfs/meminfo/mem_used": {}
+      },
+      "config":{
+        "/intel/procfs":{
+          "proc_path":"/proc"
+        }
+      },
+      "publish":[
+        {
+          "plugin_name":"file",
+          "config":{
+            "file":"/tmp/published_psutil.log"
+          }
+        },
+        {
+          "plugin_name":"opentsdb",
+          "config":{
+            "host":"opentsdb",
+            "port": 4242
+          }
+        }
+      ]
+    }
+  }
+}
